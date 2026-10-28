@@ -6,4 +6,11 @@
  coffee:{image:"https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=900&h=1400&fit=crop",user:"maya.j",line:"romanticize the ordinary, always. ☕",sub:"A softer morning · Original audio"}
  };
  document.querySelectorAll("[data-reel]").forEach(btn=>btn.addEventListener("click",()=>{const r=reels[btn.dataset.reel];if(!r)return;root.querySelector("img").src=r.image;root.querySelector(".reel-author strong").textContent=r.user;root.querySelector(".reel-author span").textContent=r.sub;root.querySelector(".reel-bottom>p").textContent=r.line;root.scrollIntoView({behavior:MI.state.reduceMotion?"auto":"smooth",block:"center"});}));
+ const list=document.getElementById("created-reels");
+ if(list){
+   try{
+     const posted=await MI.api("api_feed",MI.state.token,"reel");
+     list.innerHTML=posted&&posted.length?posted.map(MI.renderPost).join(""):'<div class="empty-profile"><span>✳</span><h3>Your next reel is waiting.</h3><p>Use “Make a reel” to share your own moment in motion.</p></div>';
+   }catch(e){list.innerHTML='<p class="settings-row-note">Could not load reels right now.</p>';}
+ }
 };})();

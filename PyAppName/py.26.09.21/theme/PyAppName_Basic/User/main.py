@@ -26,8 +26,7 @@ def main() -> None:
     if mode == "default":
         mode = None
     eel.start("index.html", mode=mode, size=(1480, 940), position=(80, 48),
-              port=0, block=True,
-              cmdline_args=["--disable-features=TranslateUI", "--disable-background-timer-throttling"])
+              port=0, block=True)
 
 if __name__ == "__main__":
     main()

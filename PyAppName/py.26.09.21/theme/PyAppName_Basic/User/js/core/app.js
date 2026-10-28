@@ -116,7 +116,7 @@ document.addEventListener("submit",async event=>{
  }
  if(form.id==="comment-modal-form"||form.classList.contains("comment-form")){
   event.preventDefault();const postId=form.dataset.postId||form.closest(".post-card")?.dataset.postId;const body=form.elements.body?form.elements.body.value:form.elements.comment.value;const error=$("#comment-error");
-  try{await MI.api("api_add_comment",MI.state.token,Number(postId),body);MI.closeModal();MI.toast("Your comment is part of the conversation.");await navigate(MI.state.route==="saved"?"saved":"home");}
+  try{await MI.api("api_add_comment",MI.state.token,Number(postId),body);MI.closeModal();MI.toast("Your comment is part of the conversation.");await navigate(MI.state.route==="saved"?"saved":MI.state.route);}
   catch(e){if(error){error.textContent=e.message;error.classList.remove("hidden");}else{MI.toast(e.message);if(!MI.state.user)authRequired();}}return;
  }
  if(form.id==="profile-form"){

@@ -19,7 +19,7 @@
  }
  function fallback(name,args){const token=state.token;switch(name){
  case"api_bootstrap":return{user:state.user,feed:DEMO.map(x=>({...x})),stories:[]};
- case"api_feed":return DEMO.map(x=>({...x}));
+ case"api_feed":{const kind=args[1];return DEMO.filter(x=>!["post","reel"].includes(kind)||x.kind===kind).map(x=>({...x}));}
  case"api_stories":return[];
  case"api_search":{const q=String(args[0]||"").toLowerCase();return PEOPLE.filter(p=>(p.username+" "+p.display_name).toLowerCase().includes(q));}
  case"api_register":{const p=args[0];if(String(p.password||"").length<10)throw Error("Use a password with at least 10 characters.");const user={id:99,username:p.username,display_name:p.display_name||p.username,email:p.email,bio:"",avatar_url:""};state.user=user;state.token="demo-"+Date.now();return{token:state.token,user};}

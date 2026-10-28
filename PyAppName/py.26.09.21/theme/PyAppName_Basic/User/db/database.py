@@ -110,3 +110,13 @@ class Database:
         conn.execute("INSERT INTO likes(user_id,post_id) VALUES(?,?)", (authors[2], post_ids[0]))
         conn.execute("INSERT INTO comments(post_id,user_id,body) VALUES(?,?,?)", (post_ids[0], authors[1], "This light is everything ✨"))
         conn.execute("INSERT INTO comments(post_id,user_id,body) VALUES(?,?,?)", (post_ids[1], authors[3], "Saving this feeling for later."))
+        # Seed a few 24-hour stories so the story viewer is useful on first launch.
+        sample_stories = [
+            (authors[0], "A softer start to the day. 🌿", "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=900&h=1200&fit=crop"),
+            (authors[1], "Chasing the last little bit of golden light.", "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=900&h=1200&fit=crop"),
+            (authors[2], "A little sea air fixes a lot. 🌊", "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?w=900&h=1200&fit=crop"),
+            (authors[3], "City lights, quiet mind. ✨", "https://images.unsplash.com/photo-1519608487953-e999c86e7455?w=900&h=1200&fit=crop"),
+        ]
+        for user_id, story_text, image_url in sample_stories:
+            conn.execute("INSERT INTO stories(user_id,text,image_url,expires_at) VALUES(?,?,?,datetime('now','+24 hours'))",
+                         (user_id, story_text, image_url))
