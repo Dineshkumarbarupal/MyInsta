@@ -25,8 +25,15 @@ class SocialService:
         with self.db.connect() as conn:
             viewer = conn.execute("SELECT user_id FROM sessions WHERE token=?", (token,)).fetchone() if token else None
             viewer_id = viewer["user_id"] if viewer else None
-            where = "WHERE p.kind=?" if kind in ("post", "reel") else ""
-            params = [kind] if where else []
+            if kind in ("post", "reel"):
+                where = "WHERE p.kind=?"
+                params = [kind]
+            elif kind == "following" and viewer_id:
+                where = "WHERE (p.user_id=? OR EXISTS(SELECT 1 FROM follows f WHERE f.follower_id=? AND f.followed_id=p.user_id))"
+                params = [viewer_id, viewer_id]
+            else:
+                where = ""
+                params = []
             rows = conn.execute(f"""SELECT p.*,u.username,u.display_name,u.avatar_url,
                 (SELECT COUNT(*) FROM likes l WHERE l.post_id=p.id) like_count,
                 (SELECT COUNT(*) FROM comments c WHERE c.post_id=p.id) comment_count,
