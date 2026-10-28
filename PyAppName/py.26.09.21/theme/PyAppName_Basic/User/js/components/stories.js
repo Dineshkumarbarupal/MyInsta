@@ -1,0 +1,1 @@
+(function(){const MI=window.MI;MI.components=MI.components||{};MI.components.stories=function(root){if(!root)return;root.querySelectorAll(".story-person").forEach(button=>button.setAttribute("aria-label","View story from "+(button.querySelector(".story-name")?.textContent||"friend")));const rail=root.querySelector(".stories-rail");if(rail)rail.setAttribute("tabindex","0");};})();

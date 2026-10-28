@@ -1,0 +1,1 @@
+(function(){const MI=window.MI;MI.components=MI.components||{};MI.components.rightPanel=function(root){if(!root)return;root.querySelectorAll("[data-follow]").forEach(button=>button.title="Follow this creator");};})();

@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+*.sqlite
+*.sqlite3
+*.db
+PyAppName/py.26.09.21/theme/PyAppName_Basic/User/Runtime/generated_web/
+PyAppName/py.26.09.21/theme/PyAppName_Basic/User/data/*
+!PyAppName/py.26.09.21/theme/PyAppName_Basic/User/data/.gitkeep
+.DS_Store

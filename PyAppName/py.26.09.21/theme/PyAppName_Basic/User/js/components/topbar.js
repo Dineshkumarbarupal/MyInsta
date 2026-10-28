@@ -1,0 +1,1 @@
+(function(){const MI=window.MI;MI.components=MI.components||{};MI.components.topbar=function(root){if(!root)return;const search=root.querySelector("#global-search");if(search){search.setAttribute("aria-label","Search people and moments");search.addEventListener("input",()=>search.classList.toggle("has-query",!!search.value.trim()));}};})();

@@ -1,0 +1,1 @@
+(function(){const MI=window.MI;MI.components=MI.components||{};MI.components.profileHeader=function(root){if(!root)return;const avatar=root.querySelector("#profile-avatar");if(avatar){avatar.addEventListener("error",()=>{avatar.src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=240&h=240&fit=crop&crop=faces";},{once:true});}};})();

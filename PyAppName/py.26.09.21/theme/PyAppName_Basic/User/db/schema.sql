@@ -1,0 +1,3 @@
+-- Canonical schema documentation; database.py executes the equivalent idempotent schema.
+-- Tables: users, sessions, posts, likes, comments, follows, stories, bookmarks,
+-- notifications, messages. See db/database.py for field constraints and indexes.
