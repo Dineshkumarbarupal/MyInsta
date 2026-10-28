@@ -17,7 +17,7 @@ python -m venv .venv
 pip install -r requirements.txt
 python PyAppName/py.26.09.21/theme/PyAppName_Basic/User/main.py
 ```
-Eel uses Chrome/Chromium by default. To open in the system browser, set `MYINSTA_BROWSER=default`.
+Eel opens Chrome/Chromium by default. If Chrome is unavailable but Microsoft Edge is installed, set `MYINSTA_BROWSER=edge`. Set `MYINSTA_BROWSER=none` to start the local Eel server without opening a window.
 
 ## Tests
 ```bash

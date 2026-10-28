@@ -22,11 +22,12 @@ def main() -> None:
     web_root = build_frontend(USER_DIR)
     eel.init(str(web_root))
     register_api(eel, database)
-    mode = os.environ.get("MYINSTA_BROWSER", "chrome")
-    if mode == "default":
-        mode = None
+    mode = os.environ.get("MYINSTA_BROWSER", "chrome").strip().lower()
+    if mode == "none":
+        mode = None  # Serve without opening a browser window.
     eel.start("index.html", mode=mode, size=(1480, 940), position=(80, 48),
-              port=0, block=True)
+              port=0, block=True,
+              cmdline_args=["--disable-features=TranslateUI", "--disable-background-timer-throttling"])
 
 if __name__ == "__main__":
     main()
