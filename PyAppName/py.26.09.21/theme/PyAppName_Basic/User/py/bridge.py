@@ -20,7 +20,7 @@ def register_api(eel, database):
         return wrapped
 
     def expose(name, fn):
-        eel.expose(safe(fn), name)
+        eel.expose(name)(safe(fn))
 
     expose("api_bootstrap", lambda token=None: {"user": auth.current_user(token), "feed": social.feed(token), "stories": social.stories(token)})
     expose("api_register", lambda payload: auth.register(payload or {}))
